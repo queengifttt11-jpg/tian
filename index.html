@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Anniversary Sayangg 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#f7d6dc;
+  font-family:'Fredoka',sans-serif;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.page{
+  display:none;
+  width:100%;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  text-align:center;
+}
+
+.page.active{
+  display:flex;
+}
+
+.card{
+  max-width:420px;
+  width:100%;
+}
+
+.title{
+  font-family:'Baloo 2',cursive;
+  color:#a62d58;
+  font-size:2rem;
+  margin-bottom:15px;
+  line-height:1.3;
+}
+
+.text{
+  color:#b15f7b;
+  line-height:1.8;
+  margin-bottom:25px;
+}
+
+.btn{
+  background:#980038;
+  color:white;
+  border:none;
+  padding:14px 35px;
+  border-radius:999px;
+  cursor:pointer;
+  font-family:'Fredoka',sans-serif;
+  font-weight:600;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+.calendar-img{
+  width:260px;
+  display:block;
+  margin:0 auto 20px;
+  animation:float 3s infinite ease-in-out;
+}
+
+.character-img{
+  width:180px;
+  display:block;
+  margin:0 auto 20px;
+  animation:float 3s infinite ease-in-out;
+}
+
+.envelope-img{
+  width:220px;
+  display:block;
+  margin:0 auto 20px;
+  animation:float 3s infinite ease-in-out;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.gallery img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:20px;
+}
+
+.letter{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  text-align:left;
+  max-height:300px;
+  overflow:auto;
+  color:#8c4a65;
+  line-height:2;
+}
+
+.hearts{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:10;
+}
+
+.heart{
+  position:absolute;
+  animation:fall linear forwards;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+}
+
+@keyframes fall{
+  from{
+    transform:translateY(-50px);
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+}
+
+.birthday-letter{
+  width:100%;
+  max-width:700px;
+  padding:20px;
+  max-height:90vh;
+  overflow-y:auto;
+}
+
+.final-title{
+  font-family:'Baloo 2',cursive;
+  font-size:2rem;
+  line-height:1.4;
+  color:#a62d58;
+  margin-bottom:30px;
+}
+
+.letter-content{
+  border-left:4px solid #d67c9d;
+  padding-left:20px;
+  text-align:left;
+}
+
+#typing-text{
+  white-space:pre-line;
+  font-size:1rem;
+  line-height:2;
+  color:#8c4a65;
+}
+
+.cursor{
+  animation:blink .8s infinite;
+}
+
+@keyframes blink{
+  50%{
+    opacity:0;
+  }
+}
+
+/* MUSIC BUTTON */
+.music-control{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:none;
+  background:#980038;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+  z-index:999;
+  box-shadow:0 5px 15px rgba(152,0,56,.25);
+  transition:.3s;
+}
+
+.music-control:hover{
+  transform:scale(1.1);
+}
+
+.music-control.playing{
+  animation:musicPulse 1.2s infinite;
+}
+
+@keyframes musicPulse{
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.08);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+}
+
+@media(max-width:500px){
+
+  .title{
+    font-size:1.8rem;
+  }
+
+  .text{
+    font-size:.95rem;
+  }
+
+  .birthday-letter{
+    padding:15px;
+  }
+
+  .final-title{
+    font-size:1.7rem;
+  }
+
+  #typing-text{
+    font-size:.92rem;
+    line-height:1.9;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==============================
+     MUSIC
+============================== -->
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio.
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button
+  id="musicButton"
+  class="music-control"
+  onclick="toggleMusic()">
+  🔇
+</button>
+
+<div class="hearts"></div>
+
+
+<!-- ==============================
+     PAGE 1
+============================== -->
+
+<div class="page active">
+
+  <div class="card">
+
+    <img src="box.gif" class="calendar-img">
+
+    <button class="btn" onclick="startWebsite()">
+      open &lt;3
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 2
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <img src="kalender.png" class="calendar-img">
+
+    <h1 class="title">
+      happy anniversary sayangg!!
+    </h1>
+
+    <p class="text">
+      there's more waiting... click to find out
+    </p>
+
+    <button class="btn" onclick="nextPage()">
+      tap &lt;3
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 3
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <img src="icon4.gif" class="character-img">
+
+    <p class="text">
+      Thank you for every smile,
+      every laugh,
+      and every moment together.
+    </p>
+
+    <button class="btn" onclick="nextPage()">
+      ♡
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 4
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <img src="icon5.gif" class="character-img">
+
+    <h1 class="title">
+      4 tahun!!!
+    </h1>
+
+    <p class="text">
+      4 tahun penuh cerita, tawa, air mata, pelukan,
+      diam-diam saling ngerti, dan tetap saling bertahan.
+    </p>
+
+    <button class="btn" onclick="nextPage()">
+      tap &lt;3
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 5
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <div class="gallery">
+
+      <img src="foto1.jpeg">
+      <img src="foto2.jpeg">
+      <img src="foto3.jpeg">
+      <img src="foto4.jpeg">
+
+    </div>
+
+    <button class="btn" onclick="nextPage()">
+      ♡
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 6
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <img src="amplop.gif" class="envelope-img">
+
+    <p class="text">
+      there's something I want to tell you.
+    </p>
+
+    <button class="btn" onclick="nextPage()">
+      open
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 7
+============================== -->
+
+<div class="page">
+
+  <div class="birthday-letter">
+
+    <h1 class="final-title">
+
+      🎀 HAPPYY ANNIVERSARYY 🎀
+      <br>
+
+      SAYANGGG
+      <br>
+
+      ₍˶ᵔ ᵕ ᵔ˶₎♡
+
+    </h1>
+
+    <div class="letter-content">
+
+      <p id="typing-text"></p>
+
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="nextPage()">
+      ♡
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PAGE 8
+============================== -->
+
+<div class="page">
+
+  <div class="card">
+
+    <img src="icon3.gif" class="character-img">
+
+    <p class="text">
+      Thank you for being my happiness,
+      my comfort,
+      and my favorite person.
+    </p>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   MUSIC
+========================================== */
+
+const bgMusic = document.getElementById("bgMusic");
+const musicButton = document.getElementById("musicButton");
+
+let musicStarted = false;
+
+
+/* ==========================================
+   START WEBSITE + MUSIC
+========================================== */
+
+function startWebsite(){
+
+  /*
+    Musik dimulai setelah user menekan tombol.
+    Ini lebih aman untuk browser HP karena
+    browser mengizinkan audio setelah interaksi.
+  */
+
+  bgMusic.volume = 0.5;
+
+  bgMusic.play()
+    .then(() => {
+
+      musicStarted = true;
+
+      musicButton.innerHTML = "🎵";
+
+      musicButton.classList.add("playing");
+
+    })
+    .catch((error) => {
+
+      console.log("Musik belum bisa diputar:", error);
+
+    });
+
+
+  nextPage();
+
+}
+
+
+/* ==========================================
+   PLAY / PAUSE MUSIC
+========================================== */
+
+function toggleMusic(){
+
+  if(bgMusic.paused){
+
+    bgMusic.play()
+      .then(() => {
+
+        musicStarted = true;
+
+        musicButton.innerHTML = "🎵";
+
+        musicButton.classList.add("playing");
+
+      })
+      .catch((error) => {
+
+        console.log(error);
+
+      });
+
+  }else{
+
+    bgMusic.pause();
+
+    musicButton.innerHTML = "🔇";
+
+    musicButton.classList.remove("playing");
+
+  }
+
+}
+
+
+/* ==========================================
+   PAGE SYSTEM
+========================================== */
+
+let current = 0;
+
+const pages = document.querySelectorAll(".page");
+
+
+function nextPage(){
+
+  pages[current].classList.remove("active");
+
+  current++;
+
+  if(current >= pages.length){
+
+    current = pages.length - 1;
+
+  }
+
+  pages[current].classList.add("active");
+
+
+  /*
+    Page 7 = index 6
+  */
+
+  if(current === 6){
+
+    setTimeout(startTyping,500);
+
+  }
+
+}
+
+
+/* ==========================================
+   LONG ANNIVERSARY MESSAGE
+========================================== */
+
+const birthdayMessage = `Happy Anniversary, sayang. 💗
+
+Nggak terasa ya, sudah 4 tahun kita jalanin semuanya bersama. Empat tahun yang isinya nggak selalu tentang hari-hari yang sempurna, tapi justru tentang banyak hal yang kita lewati bareng. Ada tawa, bahagia, salah paham, marah, sedih, kecewa, sampai momen-momen kecil yang mungkin terlihat sederhana, tapi ternyata jadi bagian dari cerita yang paling aku ingat.
+
+Terima kasih karena selama ini kamu sudah menjadi seseorang yang selalu ada. Terima kasih untuk perhatian kecil yang kadang nggak aku minta, untuk kesabaran yang mungkin sering aku uji, untuk dukungan yang selalu kamu kasih, dan untuk semua hal yang kamu lakukan meskipun terkadang aku nggak sempat mengatakannya.
+
+Aku tahu selama kita bersama, aku juga nggak selalu menjadi pasangan yang mudah untuk dihadapi. Ada saatnya aku terlalu banyak berpikir, terlalu ingin dimengerti, atau mungkin tanpa sadar membuat kamu capek. Untuk semua itu, aku benar-benar minta maaf.
+
+Aku masih belajar untuk menjadi seseorang yang lebih baik buat kamu, bukan cuma sebagai pacar, tapi juga sebagai seseorang yang bisa membuat kamu merasa nyaman dan dihargai.
+
+Empat tahun ini mengajarkan aku bahwa hubungan bukan tentang selalu bahagia setiap hari. Tapi tentang bagaimana dua orang tetap memilih untuk bertahan, belajar memahami satu sama lain, memperbaiki kesalahan, dan kembali memilih satu sama lain setelah melewati hari yang sulit.
+
+Aku bersyukur bisa mengenal kamu, bisa punya banyak cerita sama kamu, dan bisa sampai sejauh ini. Dari sekian banyak hal yang terjadi selama empat tahun terakhir, salah satu hal yang paling aku syukuri adalah kamu masih ada di sini, masih menjadi bagian dari hidup aku.
+
+Semoga setelah empat tahun ini, masih ada banyak tahun berikutnya yang bisa kita lewati bersama.
+
+Semoga kita bisa terus tumbuh, saling mendukung, saling memahami, dan tetap menjadi tempat pulang satu sama lain.
+
+Aku nggak tahu akan seperti apa hari-hari kita nanti, tapi aku berharap kita bisa terus menciptakan cerita baru yang nantinya akan kita ingat sambil tersenyum.
+
+Terima kasih sudah bertahan sejauh ini.
+
+Terima kasih sudah menjadi bagian dari hidup aku.
+
+Dan terima kasih karena sudah menjadi kamu. 💗
+
+Happy 4th Anniversary, sayang.
+
+Aku mencintaimu, hari ini, besok, dan di setiap hari yang masih ingin kita lewati bersama.`;
+
+
+let typingStarted = false;
+
+
+/* ==========================================
+   TYPING EFFECT
+========================================== */
+
+function startTyping(){
+
+  if(typingStarted) return;
+
+  typingStarted = true;
+
+  const target =
+    document.getElementById("typing-text");
+
+  let i = 0;
+
+
+  function type(){
+
+    if(i < birthdayMessage.length){
+
+      target.innerHTML =
+        birthdayMessage.substring(0,i+1) +
+        '<span class="cursor">|</span>';
+
+      i++;
+
+      setTimeout(type,20);
+
+    }else{
+
+      target.innerHTML =
+        birthdayMessage;
+
+    }
+
+  }
+
+  type();
+
+}
+
+
+/* ==========================================
+   FALLING EMOJIS
+========================================== */
+
+const emojis = [
+  "💗",
+  "🎀",
+  "🌹"
+];
+
+
+setInterval(()=>{
+
+  const heart =
+    document.createElement("div");
+
+  heart.className = "heart";
+
+  heart.innerHTML =
+    emojis[
+      Math.floor(
+        Math.random()*emojis.length
+      )
+    ];
+
+  heart.style.left =
+    Math.random()*100 + "vw";
+
+  heart.style.fontSize =
+    (15 + Math.random()*20) + "px";
+
+  heart.style.animationDuration =
+    (4 + Math.random()*4) + "s";
+
+
+  document
+    .querySelector(".hearts")
+    .appendChild(heart);
+
+
+  setTimeout(()=>{
+
+    heart.remove();
+
+  },8000);
+
+
+},300);
+
+</script>
+
+</body>
+</html>
